@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClimateTwin India | Predictions Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#ffeedd",
+                    "inverse-surface": "#dce2f7",
+                    "surface-bright": "#323949",
+                    "secondary-fixed": "#a2eeff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "error-container": "#93000a",
+                    "inverse-primary": "#0053db",
+                    "surface": "#0c1322",
+                    "on-background": "#dce2f7",
+                    "on-primary": "#002a78",
+                    "on-secondary-fixed": "#001f25",
+                    "secondary": "#5de6ff",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "on-primary-container": "#eeefff",
+                    "background": "#0c1322",
+                    "surface-dim": "#0c1322",
+                    "tertiary": "#ffb95f",
+                    "surface-container-low": "#141b2b",
+                    "primary": "#b4c5ff",
+                    "outline-variant": "#434655",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-variant": "#2e3545",
+                    "tertiary-container": "#996100",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-container-lowest": "#070e1d",
+                    "on-surface-variant": "#c3c6d7",
+                    "primary-fixed": "#dbe1ff",
+                    "secondary-container": "#00cbe6",
+                    "on-secondary": "#00363e",
+                    "surface-tint": "#b4c5ff",
+                    "surface-container-high": "#232a3a",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-highest": "#2e3545",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container": "#191f2f",
+                    "inverse-on-surface": "#293040",
+                    "secondary-fixed-dim": "#2fd9f4",
+                    "primary-container": "#2563eb",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary": "#472a00",
+                    "on-secondary-container": "#00515d",
+                    "outline": "#8d90a0",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-surface": "#dce2f7",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "gutter": "16px",
+                    "stack-lg": "32px",
+                    "margin-edge": "32px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "data-point": ["Space Grotesk"],
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "display-lg": ["Space Grotesk"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #081120;
+            color: #dce2f7;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: #172033;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.15);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #22d3ee;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge h-16 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(34,211,238,0.1)] bg-surface-container-lowest">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-tight">ClimateTwin India</span>
+<div class="hidden md:flex ml-8 items-center bg-surface-container-high px-4 py-1.5 rounded-full border border-white/5 self-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-64 text-on-surface" placeholder="Search region or anomaly..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 h-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors">sync</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors">settings</button>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a scientific investigator for climate research, wearing a modern dark navy lab uniform with a subtle digital HUD reflected in their glasses. The lighting is cinematic with a blue tint, set against a background of blurred data monitors in a mission control room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtR2lftkwm0mWyzJ7xD3TjlRJElmEsMGfSaI6NYED02n7ymLRGwOnV2WbJXOpIHTVEQgdBskGYEbL7R-tzmNEzmrIF5zDTLltNYIVsZwQJsD9OP08ksX4t76HVguOE_jBVC50CfRgMegpMgAMxEIROns4XKKUhP-WlJn1H1Oygtjr3DsrbyNjfaQGG3xldJ0ZaWrtYGCM_mlKRXn6noxS2q9hVaHfCHciZUY5KZRKXJ-Zu0MkTS7yoxVVMlrLIvMlvI1Q0U9DJdRJP"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 backdrop-blur-lg border-r border-white/5 shadow-2xl w-64 pt-20 bg-surface-container-low">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-1">
+<span class="material-symbols-outlined text-primary">hub</span>
+<h2 class="text-label-md font-headline-md font-semibold text-primary uppercase tracking-widest">Mission Control</h2>
+</div>
+<p class="text-[10px] font-label-md text-secondary uppercase tracking-tighter opacity-80">AI Confidence: 98.4%</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-label-md font-label-md">Climate Map</span>
+</a>
+<a class="bg-secondary/10 text-secondary border-r-2 border-secondary px-4 py-3 flex items-center gap-3 transition-transform scale-[0.98] rounded-lg" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="text-label-md font-label-md">Predictions</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#">
+<span class="material-symbols-outlined">model_training</span>
+<span class="text-label-md font-label-md">Scenario Simulator</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#"><span class="material-symbols-outlined">vulnerable</span><span class="text-label-md font-label-md">Vulnerability Index</span></a><a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#"><span class="material-symbols-outlined">api</span><span class="text-label-md font-label-md">API Portal</span></a><a class="text-on-surface-variant hover:text-on-surface px-4 py-3 flex items-center gap-3 transition-all hover:bg-white/5 rounded-lg" href="#"><span class="material-symbols-outlined">protocol</span><span class="text-label-md font-label-md">Data Protocols</span></a></nav>
+<div class="p-4 px-6 mb-4">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                Run Simulation
+            </button>
+</div>
+<div class="border-t border-white/5 p-4 flex flex-col gap-2">
+<div class="flex items-center gap-3 text-on-surface-variant text-[12px] px-2">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+<span class="font-label-md">System Status</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant text-[12px] px-2">
+<span class="material-symbols-outlined text-[16px]">help</span>
+<span class="font-label-md">Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 pt-24 px-margin-edge pb-12 min-h-screen">
+<!-- Page Header -->
+<div class="flex justify-between items-center mb-stack-lg">
+<div>
+<h1 class="text-display-lg font-display-lg font-bold text-white mb-2">Multi-Temporal Forecast Hub</h1>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Hyper-local climatic predictions across varying temporal resolutions, powered by the Indian Earth System Model (IITM-ESM) and DeepAtmosphere neural networks.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container-high border border-white/10 rounded-lg text-label-md font-label-md flex items-center gap-2 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export Dataset
+                </button>
+<button class="px-4 py-2 bg-primary-container text-white rounded-lg text-label-md font-label-md flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                    Share Briefing
+                </button>
+</div>
+</div>
+<!-- Horizontal Scrollable Timeline -->
+<div class="mb-stack-lg">
+<h3 class="text-label-md font-label-md font-semibold text-secondary uppercase mb-4 tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                Temporal Resolution Select
+            </h3>
+<div class="flex gap-6 overflow-x-auto pb-4 custom-scrollbar items-stretch">
+<!-- Today -->
+<button class="min-w-[240px] glass-card p-6 rounded-xl border-l-4 border-l-secondary text-left group hover:scale-[1.02] transition-transform">
+<p class="text-[10px] font-label-md text-on-surface-variant mb-1">REAL-TIME</p>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-4">Today</h4>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-data-point font-data-point text-secondary">32°C</p>
+<p class="text-[12px] text-on-surface-variant">Cloudy Intervals</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-50 group-hover:opacity-100">arrow_forward_ios</span>
+</div>
+</button>
+<!-- Tomorrow -->
+<button class="min-w-[240px] glass-card p-6 rounded-xl border-l-4 border-l-primary/30 text-left group hover:scale-[1.02] transition-transform">
+<p class="text-[10px] font-label-md text-on-surface-variant mb-1">+24 HOURS</p>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-4">Tomorrow</h4>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-data-point font-data-point text-primary">34°C</p>
+<p class="text-[12px] text-on-surface-variant">High Humidity</p>
+</div>
+<span class="material-symbols-outlined text-primary/50 group-hover:opacity-100">arrow_forward_ios</span>
+</div>
+</button>
+<!-- 7-Day -->
+<button class="min-w-[240px] glass-card p-6 rounded-xl border-l-4 border-l-primary/30 text-left group hover:scale-[1.02] transition-transform">
+<p class="text-[10px] font-label-md text-on-surface-variant mb-1">MEDIUM RANGE</p>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-4">7-Day</h4>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-data-point font-data-point text-primary">Avg 31°C</p>
+<p class="text-[12px] text-on-surface-variant">Light Precipitation</p>
+</div>
+<span class="material-symbols-outlined text-primary/50 group-hover:opacity-100">arrow_forward_ios</span>
+</div>
+</button>
+<!-- 15-Day -->
+<button class="min-w-[240px] glass-card p-6 rounded-xl border-l-4 border-l-primary/30 text-left group hover:scale-[1.02] transition-transform">
+<p class="text-[10px] font-label-md text-on-surface-variant mb-1">EXTENDED RANGE</p>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-4">15-Day</h4>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-data-point font-data-point text-primary">Variability High</p>
+<p class="text-[12px] text-on-surface-variant">Monsoon Onset Shift</p>
+</div>
+<span class="material-symbols-outlined text-primary/50 group-hover:opacity-100">arrow_forward_ios</span>
+</div>
+</button>
+<!-- Seasonal -->
+<button class="min-w-[240px] glass-card p-6 rounded-xl border-l-4 border-l-primary/30 text-left group hover:scale-[1.02] transition-transform">
+<p class="text-[10px] font-label-md text-on-surface-variant mb-1">LONG RANGE</p>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-4">Seasonal Outlook</h4>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-data-point font-data-point text-primary">Q3 Analysis</p>
+<p class="text-[12px] text-on-surface-variant">Agricultural Impact</p>
+</div>
+<span class="material-symbols-outlined text-primary/50 group-hover:opacity-100">arrow_forward_ios</span>
+</div>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Visualization -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-2xl p-6 relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-headline-md font-headline-md font-semibold text-white">Projected Atmosphere Dynamics</h3>
+<p class="text-on-surface-variant text-label-md font-label-md">Region: Western Ghats Corridor | confidence: σ = 0.92</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-label-md font-label-md text-on-surface-variant">Temperature (°C)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="text-label-md font-label-md text-on-surface-variant">Rainfall (mm)</span>
+</div>
+</div>
+</div>
+<!-- Visualization Placeholder with Shader Background -->
+<div class="w-full h-80 relative rounded-xl border border-white/5 bg-surface-container-lowest flex items-center justify-center">
+<!-- Faux Line Chart Interface -->
+<div class="absolute inset-0 p-6 flex flex-col justify-between">
+<div class="flex justify-between text-[10px] text-on-surface-variant font-label-md"><span class="w-full text-center">Mon</span><span class="w-full text-center">Tue</span><span class="w-full text-center">Wed</span><span class="w-full text-center text-secondary">Thu (Today)</span><span class="w-full text-center">Fri</span><span class="w-full text-center">Sat</span><span class="w-full text-center">Sun</span></div>
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 300">
+<!-- Confidence Interval Shaded Area -->
+<path d="M0 150 Q 100 120, 200 160 T 400 140 T 600 180 T 800 150 L 800 200 Q 600 230, 400 190 T 200 210 T 0 200 Z" fill="rgba(93, 230, 255, 0.05)"></path>
+<!-- Temperature Line -->
+<path d="M0 150 Q 100 120, 200 160 T 400 140 T 600 180 T 800 150" fill="none" stroke="#5de6ff" stroke-linecap="round" stroke-width="3"></path>
+<!-- Rainfall Line (Dashed) -->
+<path d="M0 250 Q 150 200, 300 230 T 500 180 T 800 220" fill="none" stroke="#ffb95f" stroke-dasharray="8,4" stroke-linecap="round" stroke-width="2"></path>
+<!-- Data Point Markers -->
+<circle cx="400" cy="140" fill="#5de6ff" r="4"></circle>
+<text fill="#5de6ff" font-family="JetBrains Mono" font-size="12" text-anchor="middle" x="400" y="120">Anomaly Detected (+2.4°)</text>
+</svg>
+<div class="flex justify-between text-[10px] text-on-surface-variant font-label-md uppercase tracking-widest pt-4 border-t border-white/5"><span class="w-full text-center">Mon</span><span class="w-full text-center">Tue</span><span class="w-full text-center">Wed</span><span class="w-full text-center text-secondary">Thu (Today)</span><span class="w-full text-center">Fri</span><span class="w-full text-center">Sat</span><span class="w-full text-center">Sun</span></div>
+</div>
+</div>
+</div>
+<!-- Model Metadata Sidebar -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="glass-card rounded-2xl p-6 flex-1">
+<h3 class="text-label-md font-label-md font-semibold text-secondary uppercase mb-6 tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+                        Model Intelligence
+                    </h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-surface-container-highest rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">deployed_code</span>
+</div>
+<div>
+<p class="text-on-surface font-body-md font-bold">DeepAtmosphere v4.2</p>
+<p class="text-[12px] text-on-surface-variant">Recursive Neural Network with Transformer architecture for spatio-temporal modeling.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-surface-container-highest rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">database</span>
+</div>
+<div>
+<p class="text-on-surface font-body-md font-bold">Training Corpus</p>
+<p class="text-[12px] text-on-surface-variant">40 Years National History (IMD) merged with Sentinel-5P satellite data.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-surface-container-highest rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<div>
+<p class="text-on-surface font-body-md font-bold">Compute Power</p>
+<p class="text-[12px] text-on-surface-variant">Pratyush &amp; Mihir Supercomputing Cluster (8.6 Petaflops).</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/5">
+<div class="flex justify-between mb-2">
+<span class="text-label-md font-label-md text-on-surface-variant">Prediction Latency</span>
+<span class="text-label-md font-label-md text-primary">124ms</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[92%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Prediction Cards: Extreme Event Probability -->
+<div class="col-span-12">
+<h3 class="text-label-md font-label-md font-semibold text-secondary uppercase mb-6 tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+                    Extreme Event Probability (72h Window)
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Cyclone Probability -->
+<div class="glass-card p-6 rounded-2xl flex items-center justify-between group hover:border-error/30 transition-all">
+<div>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-1">Cyclonic Storm</h4>
+<p class="text-[12px] text-on-surface-variant">Bay of Bengal Formation</p>
+<div class="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-error-container/20 text-error rounded-full text-[10px] font-label-md">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                HIGH RISK
+                            </div>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="none" r="40" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8"></circle>
+<circle cx="48" cy="48" fill="none" r="40" stroke="#ffb4ab" stroke-dasharray="251" stroke-dashoffset="37" stroke-width="8"></circle>
+</svg>
+<span class="absolute text-data-point font-data-point text-white">85%</span>
+</div>
+</div>
+<!-- Cloudburst Probability -->
+<div class="glass-card p-6 rounded-2xl flex items-center justify-between group">
+<div>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-1">Cloudburst Event</h4>
+<p class="text-[12px] text-on-surface-variant">Himalayan Foothills</p>
+<div class="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-tertiary-container/20 text-tertiary rounded-full text-[10px] font-label-md">
+<span class="material-symbols-outlined text-[12px]">priority_high</span>
+                                MONITORING
+                            </div>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="none" r="40" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8"></circle>
+<circle cx="48" cy="48" fill="none" r="40" stroke="#ffb95f" stroke-dasharray="251" stroke-dashoffset="170" stroke-width="8"></circle>
+</svg>
+<span class="absolute text-data-point font-data-point text-white">32%</span>
+</div>
+</div>
+<!-- Heatwave Probability -->
+<div class="glass-card p-6 rounded-2xl flex items-center justify-between group">
+<div>
+<h4 class="text-headline-md font-headline-md font-semibold text-white mb-1">Heatwave Surge</h4>
+<p class="text-[12px] text-on-surface-variant">North-Central Plains</p>
+<div class="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-secondary-container/20 text-secondary rounded-full text-[10px] font-label-md">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+                                NOMINAL
+                            </div>
+</div>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="none" r="40" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8"></circle>
+<circle cx="48" cy="48" fill="none" r="40" stroke="#5de6ff" stroke-dasharray="251" stroke-dashoffset="220" stroke-width="8"></circle>
+</svg>
+<span class="absolute text-data-point font-data-point text-white">12%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Regional Prediction Snapshot -->
+<div class="col-span-12 glass-card rounded-2xl p-6 overflow-hidden relative">
+<div class="absolute right-0 top-0 w-1/3 h-full opacity-40">
+<div class="bg-cover bg-center w-full h-full" data-alt="A stylized digital topographical map of India with neon cyan and amber elevation lines glowing in the dark. The map features high-tech data nodes and vector connection points, representing a mesh of climate sensors across the subcontinent. The aesthetic is professional, architectural, and deeply atmospheric." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARwDJtO7wmwLPTSiB8SInAI_-co8zRJkWy0pvD_4mxNs8GjZNkQAW45vopHMo7Xf2fQVWyO5aw5ze0F1lbbiD0h2fD249OeQKMDBoleLjnEhStcqGurzdVLPQagn4IfU39vJVXTyea8NlZqrbvpdxrKLYzejVHmAKX_H3qcWFGHAiPGcKB5CeL2n7Mr8hVt63f2fzcoo55Wv88NDtWnKJSmZIn3983gZ0ZsahaKZ-FallI1pIEMU6vphChFTYXcj2DTJCkXWxPvIT4')"></div>
+</div>
+<div class="relative z-10 w-2/3">
+<h3 class="text-headline-md font-headline-md font-semibold text-white mb-4">Regional Confidence Clusters</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">LADAKH</p>
+<p class="text-data-point font-data-point text-primary">Stable</p>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">KERALA</p>
+<p class="text-data-point font-data-point text-error">Critical</p>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">RAJASTHAN</p>
+<p class="text-data-point font-data-point text-tertiary">Fluctuating</p>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">ODISHA</p>
+<p class="text-data-point font-data-point text-primary">Improving</p>
+</div>
+</div>
+<button class="mt-8 px-6 py-3 border border-secondary/30 text-secondary text-label-md font-label-md rounded-xl hover:bg-secondary/10 transition-colors">
+                        View Localized Predictions
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = 'rgba(93, 230, 255, 0.4)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    </script>
+</body></html>

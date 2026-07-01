@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClimateTwin India | Analytics &amp; Reports Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#0c1322",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface": "#0c1322",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "primary-container": "#2563eb",
+                        "on-secondary-fixed": "#001f25",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "surface-variant": "#2e3545",
+                        "secondary-container": "#00cbe6",
+                        "on-tertiary-container": "#ffeedd",
+                        "on-primary": "#002a78",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#a2eeff",
+                        "on-background": "#dce2f7",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-surface-variant": "#c3c6d7",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#070e1d",
+                        "on-tertiary": "#472a00",
+                        "on-error": "#690005",
+                        "inverse-surface": "#dce2f7",
+                        "tertiary": "#ffb95f",
+                        "on-primary-fixed": "#00174b",
+                        "background": "#0c1322",
+                        "surface-tint": "#b4c5ff",
+                        "surface-bright": "#323949",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-container-highest": "#2e3545",
+                        "tertiary-container": "#996100",
+                        "primary-fixed": "#dbe1ff",
+                        "primary": "#b4c5ff",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#434655",
+                        "on-surface": "#dce2f7",
+                        "inverse-primary": "#0053db",
+                        "surface-container-low": "#141b2b",
+                        "secondary": "#5de6ff",
+                        "on-secondary-container": "#00515d",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "outline": "#8d90a0",
+                        "on-secondary": "#00363e",
+                        "inverse-on-surface": "#293040",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-high": "#232a3a",
+                        "on-primary-container": "#eeefff",
+                        "surface-container": "#191f2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "margin-edge": "32px",
+                        "container-padding": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Space Grotesk"],
+                        "data-point": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-point": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0c1322;
+            color: #dce2f7;
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(35, 42, 58, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(93, 230, 255, 0.3);
+            box-shadow: 0 0 20px rgba(93, 230, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #5de6ff;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-secondary selection:text-on-secondary">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface-dim/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(93,230,255,0.1)]">
+<div class="flex items-center gap-6">
+<h1 class="text-[20px] font-headline-md font-bold text-primary tracking-tight">ClimateTwin India</h1>
+<div class="hidden md:flex items-center bg-surface-container-high px-4 py-1.5 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-outline text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-[14px] font-body-md w-64 text-on-surface placeholder:text-outline" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 h-full">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors">sync</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-secondary transition-colors">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/30 ml-2 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional scientific investigator profile portrait of a female researcher in her late 30s. She is wearing a modern tech-inspired tactical vest over a dark shirt. The lighting is cold, cinematic blue and cyan, matching a mission control environment. The background is a blurred high-tech lab with digital screens displaying climate data." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn-5cbah3lsBMxw-7UNfuzRSvRgBx5bFTYijXnRcyXP_PIYrTFLs_jZ6prNSrnwlPUE44tl6cjqigZyV0KCioICgLF9fQBkilgyiSpnJOOAgUveNO1UH2jpYfxoFUUgk1YcCUkJUhYQ1fX8wKnn2SR5OHdTLwdyVqL_9pG2ZpUIi-bjOViIa9DC5388FKOFJH70K2buCRxC96wusvUrwf2zgaabKFgiSh4tGzOVLaEr3Laf9Fe-vnzV6j7uYHifNPJd_D99E1Q-2dx"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container-low/90 backdrop-blur-lg border-r border-white/5 shadow-2xl w-64 pt-16 hidden md:flex">
+<div class="p-6 border-b border-white/5">
+<div class="flex items-center gap-3 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">hub</span>
+<span class="text-label-md font-label-md text-primary uppercase tracking-widest font-bold">Mission Control</span>
+</div>
+<p class="text-[10px] text-secondary font-label-md opacity-80 uppercase tracking-tighter">AI Confidence: 98.4%</p>
+</div>
+<nav class="flex-1 py-4 overflow-y-auto custom-scrollbar">
+<div class="px-6 mb-2 text-[10px] uppercase text-outline font-bold tracking-widest">Intelligence</div>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="text-label-md font-label-md">Climate Map</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="text-label-md font-label-md">Predictions</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">model_training</span>
+<span class="text-label-md font-label-md">Scenario Simulator</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">vulnerability</span>
+<span class="text-label-md font-label-md">Vulnerability Index</span>
+</a>
+<!-- Active State -->
+<a class="bg-secondary/10 text-secondary border-r-2 border-secondary px-6 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-md font-label-md font-bold">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-md font-label-md">Reports</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">api</span>
+<span class="text-label-md font-label-md">API Portal</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">protocol</span>
+<span class="text-label-md font-label-md">Data Protocols</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface px-6 py-3 flex items-center gap-3 transition-all hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto border-t border-white/5">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-label-md text-label-md font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/20 mb-4">
+                Run Simulation
+            </button>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-on-surface text-[12px] flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[16px]">memory</span> System Status
+                </a>
+<a class="text-on-surface-variant hover:text-on-surface text-[12px] flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[16px]">help</span> Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-24 px-6 pb-16 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<nav class="flex items-center gap-2 text-outline text-[12px] font-label-md mb-2 uppercase tracking-wider">
+<span class="">Intelligence</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-secondary font-bold">Analytics Hub</span>
+</nav>
+<h2 class="text-headline-lg font-headline-lg text-on-surface font-bold">Data Analytics &amp; Reports</h2>
+<p class="text-on-surface-variant text-body-md max-w-2xl mt-2">Historical climate modeling and high-fidelity intelligence report generation for cross-state policy planning.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 border border-outline/30 px-6 py-2 rounded-lg text-label-md font-label-md hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined">filter_list</span> Filter View
+                </button>
+<button class="flex items-center gap-2 bg-secondary text-on-secondary px-6 py-2 rounded-lg text-label-md font-label-md hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-secondary/20 font-bold">
+<span class="material-symbols-outlined">add_chart</span> Generate Custom Report
+                </button>
+</div>
+</div>
+<!-- Bento Grid Analytics -->
+<div class="grid grid-cols-12 gap-6">
+<!-- District Ranking Table -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-6 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-1 h-6 bg-secondary rounded-full"></div>
+<h3 class="text-headline-md font-headline-md font-semibold">District Vulnerability Ranking</h3>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-3 py-1 rounded-md">
+<span class="text-[12px] text-outline font-label-md tracking-wider">PERIOD: Q3 2024</span>
+</div>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-separate border-spacing-y-2">
+<thead>
+<tr class="text-outline font-label-md text-[12px] uppercase tracking-wider">
+<th class="pb-4 px-4 font-bold">Rank</th>
+<th class="pb-4 px-4 font-bold">District / State</th>
+<th class="pb-4 px-4 font-bold">Risk Index</th>
+<th class="pb-4 px-4 font-bold">Anomaly Trend</th>
+<th class="pb-4 px-4 font-bold">Status</th>
+</tr>
+</thead>
+<tbody class="text-on-surface text-body-md">
+<tr class="bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
+<td class="py-4 px-4 font-label-md text-secondary font-bold">#01</td>
+<td class="py-4 px-4">
+<div class="font-bold">Kutch</div>
+<div class="text-xs text-outline">Gujarat</div>
+</td>
+<td class="py-4 px-4">
+<div class="text-data-point font-data-point text-error font-bold">9.4</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-[12px] font-label-md font-bold">+1.2°C</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error/10 text-error text-[10px] font-bold uppercase border border-error/20 tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span> Critical
+                                    </span>
+</td>
+</tr>
+<tr class="bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
+<td class="py-4 px-4 font-label-md text-secondary font-bold">#02</td>
+<td class="py-4 px-4">
+<div class="font-bold">Barmer</div>
+<div class="text-xs text-outline">Rajasthan</div>
+</td>
+<td class="py-4 px-4">
+<div class="text-data-point font-data-point text-tertiary font-bold">8.8</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-[12px] font-label-md font-bold">+0.9°C</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase border border-tertiary/20 tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> High Alert
+                                    </span>
+</td>
+</tr>
+<tr class="bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
+<td class="py-4 px-4 font-label-md text-secondary font-bold">#03</td>
+<td class="py-4 px-4">
+<div class="font-bold">Sundarbans</div>
+<div class="text-xs text-outline">West Bengal</div>
+</td>
+<td class="py-4 px-4">
+<div class="text-data-point font-data-point text-tertiary font-bold">8.2</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]">water_drop</span>
+<span class="text-[12px] font-label-md font-bold">+4mm SLR</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase border border-tertiary/20 tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> High Alert
+                                    </span>
+</td>
+</tr>
+<tr class="bg-white/5 hover:bg-white/10 transition-colors group cursor-pointer">
+<td class="py-4 px-4 font-label-md text-secondary font-bold">#04</td>
+<td class="py-4 px-4">
+<div class="font-bold">Anantapur</div>
+<div class="text-xs text-outline">Andhra Pradesh</div>
+</td>
+<td class="py-4 px-4">
+<div class="text-data-point font-data-point text-primary font-bold">7.5</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+<span class="text-[12px] font-label-md font-bold">-15% Rain</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase border border-primary/20 tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Monitoring
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-6 flex justify-center border-t border-white/5 pt-4">
+<button class="text-secondary font-label-md text-[12px] uppercase tracking-widest hover:underline font-bold">View All 766 Districts</button>
+</div>
+</div>
+<!-- Heatmap Visualization -->
+<div class="col-span-12 lg:col-span-4 glass-card rounded-xl p-6 flex flex-col h-full">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-1 h-6 bg-secondary rounded-full hidden"></div>
+<h3 class="text-headline-md font-headline-md font-semibold">Climate Anomaly Heatmap</h3>
+</div>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-secondary transition-colors">info</span>
+</div>
+<div class="flex-1 relative rounded-lg overflow-hidden bg-surface-container-lowest border border-white/5 min-h-[300px]">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+<!-- Mock Map Background -->
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="A stylized, high-contrast dark satellite map of the Indian subcontinent. Overlaid on the map are glowing neon heatmap clusters in shades of amber, orange, and electric cyan, representing temperature anomalies. The map has a tactical, HUD-like appearance with thin vector lines, data points, and a faint grid. The aesthetic is clean, professional, and technologically advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDD0notlBVuloD7qwfzD31j9JUfh36AJcRs8AiBiqJ2LtcRFpH1T-riVjXbERO92uuMtj2hD9HJ8I_MP8C3r3XlsIV5HgPMIXuJKGf9gQiTUdzD2jtLK3_gCRTzXHisrocz4uMWOL7-rJSeLn5cOyn7ZkWxh0pzHwnB3JDiNqM04vjPvFljMnH8oa8qE5odNYu8EONxx7VQGqn9_503BC0uf6SUNhpyR7DZTRXB7T8zRfslMwBBMhJueePeeyj_CS73P9fRM3tiVHF-')"></div>
+<!-- Map Overlays -->
+<div class="absolute bottom-4 left-4 right-4 p-3 bg-surface-container-highest/90 backdrop-blur rounded border border-white/10">
+<div class="text-[10px] text-outline font-bold uppercase mb-2 tracking-wider text-center">Temperature Variance (°C)</div>
+<div class="flex items-center gap-2 justify-center">
+<span class="text-[10px] font-label-md font-bold">-2</span>
+<div class="h-2 flex-1 rounded-full bg-gradient-to-r from-blue-500 via-green-400 to-red-600 max-w-[120px]"></div>
+<span class="text-[10px] font-label-md font-bold">+4</span>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full border border-secondary/30 text-secondary py-2.5 rounded-lg text-label-md font-label-md hover:bg-secondary/10 transition-colors font-bold">
+                    Expand Map View
+                </button>
+</div>
+<!-- Seasonal Comparison Bar Charts -->
+<div class="col-span-12 lg:col-span-6 glass-card rounded-xl p-6 flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<div class="w-1 h-6 bg-secondary rounded-full hidden"></div>
+<div>
+<h3 class="text-headline-md font-headline-md font-semibold">Seasonal Variance</h3>
+<p class="text-outline text-label-md text-[12px] mt-1">2024 vs Historical Baseline (1990-2020)</p>
+</div>
+</div>
+<select class="bg-surface-container-highest border border-white/10 text-label-md rounded px-4 py-2 ring-1 ring-white/10 focus:ring-secondary cursor-pointer text-on-surface">
+<option>Precipitation</option>
+<option>Heat Index</option>
+<option>Humidity</option>
+</select>
+</div>
+<div class="h-64 flex items-end gap-4 px-4 pb-8 border-b border-white/5 relative gap-6 flex-1">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20 px-4 pb-8">
+<div class="border-t border-white/40 w-full"></div>
+<div class="border-t border-white/40 w-full"></div>
+<div class="border-t border-white/40 w-full"></div>
+<div class="border-t border-white/40 w-full"></div>
+<div class="border-t border-white/40 w-full"></div>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col items-center group gap-3 z-10">
+<div class="w-full flex gap-2 items-end justify-center h-full">
+<div class="w-4 sm:w-6 bg-outline/30 h-[60%] rounded-t-sm" title="Baseline: 120mm"></div>
+<div class="w-4 sm:w-6 bg-primary h-[85%] rounded-t-sm shadow-[0_0_10px_rgba(180,197,255,0.3)] transition-all group-hover:scale-y-105" title="2024: 172mm"></div>
+</div>
+<span class="text-[10px] font-label-md text-outline font-bold tracking-wider">JAN-MAR</span>
+</div>
+<div class="flex-1 flex flex-col items-center group gap-3 z-10">
+<div class="w-full flex gap-2 items-end justify-center h-full">
+<div class="w-4 sm:w-6 bg-outline/30 h-[40%] rounded-t-sm"></div>
+<div class="w-4 sm:w-6 bg-primary h-[55%] rounded-t-sm shadow-[0_0_10px_rgba(180,197,255,0.3)] transition-all group-hover:scale-y-105"></div>
+</div>
+<span class="text-[10px] font-label-md text-outline font-bold tracking-wider">APR-JUN</span>
+</div>
+<div class="flex-1 flex flex-col items-center group gap-3 z-10">
+<div class="w-full flex gap-2 items-end justify-center h-full">
+<div class="w-4 sm:w-6 bg-outline/30 h-[90%] rounded-t-sm"></div>
+<div class="w-4 sm:w-6 bg-secondary h-[40%] rounded-t-sm shadow-[0_0_10px_rgba(93,230,255,0.3)] transition-all group-hover:scale-y-105"></div>
+</div>
+<span class="text-[10px] font-label-md text-outline font-bold tracking-wider">JUL-SEP</span>
+</div>
+<div class="flex-1 flex flex-col items-center group gap-3 z-10">
+<div class="w-full flex gap-2 items-end justify-center h-full">
+<div class="w-4 sm:w-6 bg-outline/30 h-[50%] rounded-t-sm"></div>
+<div class="w-4 sm:w-6 bg-primary h-[70%] rounded-t-sm shadow-[0_0_10px_rgba(180,197,255,0.3)] transition-all group-hover:scale-y-105"></div>
+</div>
+<span class="text-[10px] font-label-md text-outline font-bold tracking-wider">OCT-DEC</span>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-center gap-8">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-outline/30 rounded-sm"></span>
+<span class="text-[10px] text-outline uppercase font-bold tracking-widest">Historical Baseline</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary rounded-sm"></span>
+<span class="text-[10px] text-primary uppercase font-bold tracking-widest">Current (2024)</span>
+</div>
+</div>
+</div>
+<!-- Recent Intelligence Reports -->
+<div class="col-span-12 lg:col-span-6 glass-card rounded-xl p-6 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-1 h-6 bg-secondary rounded-full hidden"></div>
+<h3 class="text-headline-md font-headline-md font-semibold">Intelligence Reports</h3>
+</div>
+<button class="text-secondary text-[12px] font-label-md hover:underline font-bold tracking-wider uppercase">History</button>
+</div>
+<div class="space-y-4 max-h-[300px] overflow-y-auto custom-scrollbar pr-2 flex-1">
+<!-- Report Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-lg border border-white/5 hover:border-secondary/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20">
+<span class="material-symbols-outlined text-secondary">description</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-body-md group-hover:text-secondary transition-colors">Monsoon Anomaly Analysis - West India</h4>
+<p class="text-[12px] text-outline mt-1 font-label-md">Generated: Oct 24, 2024 • 14.2 MB</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-white/10 rounded-md transition-colors text-outline hover:text-on-surface" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-md transition-colors text-outline hover:text-on-surface" title="Download CSV">
+<span class="material-symbols-outlined text-[20px]">csv</span>
+</button>
+</div>
+</div>
+<!-- Report Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-lg border border-white/5 hover:border-tertiary/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary">warning</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-body-md group-hover:text-tertiary transition-colors">Heatwave Projection Report - Q4</h4>
+<p class="text-[12px] text-outline mt-1 font-label-md">Generated: Oct 20, 2024 • 8.5 MB</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-white/10 rounded-md transition-colors text-outline hover:text-on-surface" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-md transition-colors text-outline hover:text-on-surface" title="Download CSV">
+<span class="material-symbols-outlined text-[20px]">csv</span>
+</button>
+</div>
+</div>
+<!-- Report Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-lg border border-white/5 hover:border-primary/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-body-md group-hover:text-primary transition-colors">Annual Sustainability Index Draft</h4>
+<p class="text-[12px] text-outline mt-1 font-label-md">Generated: Oct 15, 2024 • 22.1 MB</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-white/10 rounded-md transition-colors text-outline hover:text-on-surface" title="Download PDF">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-md transition-colors text-outline hover:text-on-surface" title="Download CSV">
+<span class="material-symbols-outlined text-[20px]">csv</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Custom Report Builder Section -->
+<section class="mt-8 glass-card rounded-2xl overflow-hidden shadow-2xl">
+<div class="p-6 border-b border-white/5 bg-white/5">
+<h3 class="text-headline-md font-headline-md font-semibold mb-2">Generate Specialized Intelligence Report</h3>
+<p class="text-on-surface-variant text-body-md">Configure parameters for deep-learning powered climate projections and structural risk assessment.</p>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Date Range Selection -->
+<div>
+<label class="block text-label-md font-label-md text-secondary uppercase mb-4 tracking-widest font-bold">Date Range Scope</label>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<span class="text-[10px] text-outline uppercase font-bold tracking-wider">Start Date</span>
+<input class="w-full bg-surface-container-highest border-white/10 rounded text-label-md focus:ring-secondary focus:border-secondary text-on-surface p-2.5" type="date" value="2024-01-01"/>
+</div>
+<div class="space-y-2">
+<span class="text-[10px] text-outline uppercase font-bold tracking-wider">End Date</span>
+<input class="w-full bg-surface-container-highest border-white/10 rounded text-label-md focus:ring-secondary focus:border-secondary text-on-surface p-2.5" type="date" value="2030-12-31"/>
+</div>
+</div>
+</div>
+<!-- Parameter Selection -->
+<div>
+<label class="block text-label-md font-label-md text-secondary uppercase mb-4 tracking-widest font-bold">Primary Parameters</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-secondary text-on-secondary rounded-md font-label-md text-label-md font-bold transition-all shadow-lg shadow-secondary/20">Surface Temp</button>
+<button class="px-4 py-2 rounded-md bg-surface-container-highest border border-white/10 text-on-surface-variant font-label-md text-[14px] hover:bg-white/10 transition-colors">Sea Level</button>
+<button class="px-4 py-2 rounded-md bg-surface-container-highest border border-white/10 text-on-surface-variant font-label-md text-[14px] hover:bg-white/10 transition-colors">CO2 Concentration</button>
+<button class="px-4 py-2 rounded-md bg-surface-container-highest border border-white/10 text-on-surface-variant font-label-md text-[14px] hover:bg-white/10 transition-colors">Precipitation</button>
+<button class="px-4 py-2 rounded-md bg-surface-container-highest border border-white/10 text-on-surface-variant font-label-md text-[14px] hover:bg-white/10 transition-colors">Wind Velocity</button>
+</div>
+</div>
+<!-- Export Format -->
+<div class="flex flex-col justify-between">
+<div>
+<label class="block text-label-md font-label-md text-secondary uppercase mb-4 tracking-widest font-bold">Advanced Options</label>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<input checked="" class="rounded bg-surface-container-highest border-white/10 text-secondary focus:ring-secondary mt-1" type="checkbox"/>
+<span class="text-body-md text-on-surface">Include AI Predictive Uncertainty Layers</span>
+</div>
+<div class="flex items-start gap-3">
+<input class="rounded bg-surface-container-highest border-white/10 text-secondary focus:ring-secondary mt-1" type="checkbox"/>
+<span class="text-body-md text-on-surface">Export High-Res GeoTIFF Data</span>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full py-3 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined">auto_awesome</span> 
+                        COMPILE CUSTOM INTELLIGENCE
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Status Bar -->
+<footer class="fixed bottom-0 left-64 right-0 h-8 bg-surface-container-lowest/90 backdrop-blur border-t border-white/5 flex items-center justify-between px-6 z-30 hidden md:flex">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)]"></span>
+<span class="text-[10px] text-outline font-label-md uppercase tracking-widest font-bold">Engine: TWIN-V4.2 CONNECTED</span>
+</div>
+<div class="h-3 w-px bg-white/10"></div>
+<span class="text-[10px] text-outline font-label-md uppercase tracking-widest font-bold">LAT: 20.5937° N | LON: 78.9629° E</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] text-secondary font-label-md uppercase tracking-widest font-bold animate-pulse">Processing Simulation Request...</span>
+<div class="h-3 w-px bg-white/10"></div>
+<span class="text-[10px] text-outline font-label-md uppercase tracking-widest font-bold">Oct 27, 2024 14:42 IST</span>
+</div>
+</footer>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                console.log('Fetching detailed analytics for district...');
+                row.classList.add('ring-1', 'ring-secondary/50', 'bg-white/10');
+                setTimeout(() => row.classList.remove('ring-1', 'ring-secondary/50', 'bg-white/10'), 300);
+            });
+        });
+    </script>
+</body></html>

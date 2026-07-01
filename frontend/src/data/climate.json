@@ -1,0 +1,43 @@
+{
+  "kpis": {
+    "temperature": 32.4,
+    "tempTrend": 1.2,
+    "rainfall": 12.5,
+    "rainDeficit": 4,
+    "humidity": 68,
+    "heatIndex": 38,
+    "healthScore": 74,
+    "aiConfidence": 98.4
+  },
+  "alerts": [
+    { 
+      "id": "1", 
+      "type": "warning", 
+      "title": "Monsoon Alert", 
+      "timeAgo": "12m ago", 
+      "description": "Intense precipitation cluster forming over Central India basin. Expected landing within 48h." 
+    },
+    { 
+      "id": "2", 
+      "type": "danger", 
+      "title": "Critical Warning", 
+      "timeAgo": "1h ago", 
+      "description": "Heatwave Warning: North India. Thermal anomaly +4.5°C above standard mean for Punjab and Haryana regions." 
+    },
+    { 
+      "id": "3", 
+      "type": "info", 
+      "title": "Model Update", 
+      "timeAgo": "4h ago", 
+      "description": "Satellite Sync Complete. Sentinel-3 data integrated. Cloud cover penetration improved by 12%." 
+    }
+  ],
+  "trend": [
+    { "month": "MAR", "historical": 28, "predicted": 29.5 },
+    { "month": "APR", "historical": 32, "predicted": 33.1 },
+    { "month": "MAY", "historical": 35, "predicted": 37.4 },
+    { "month": "JUN", "historical": 36, "predicted": 36.8 },
+    { "month": "JUL", "historical": 33, "predicted": 34.2 },
+    { "month": "AUG", "historical": 32, "predicted": 31.9 }
+  ]
+}

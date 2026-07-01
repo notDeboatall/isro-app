@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | ClimateTwin India</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-container-low": "#141b2b",
+                    "error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container-highest": "#2e3545",
+                    "tertiary": "#ffb95f",
+                    "on-surface-variant": "#c3c6d7",
+                    "surface-container-high": "#232a3a",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-tint": "#b4c5ff",
+                    "secondary-fixed": "#a2eeff",
+                    "on-secondary-container": "#00515d",
+                    "outline-variant": "#434655",
+                    "on-secondary-fixed": "#001f25",
+                    "on-primary-container": "#eeefff",
+                    "tertiary-container": "#996100",
+                    "background": "#0c1322",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface": "#0c1322",
+                    "primary": "#b4c5ff",
+                    "on-surface": "#dce2f7",
+                    "on-error": "#690005",
+                    "surface-bright": "#323949",
+                    "outline": "#8d90a0",
+                    "on-secondary": "#00363e",
+                    "inverse-on-surface": "#293040",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#070e1d",
+                    "surface-variant": "#2e3545",
+                    "secondary-fixed-dim": "#2fd9f4",
+                    "on-primary-fixed": "#00174b",
+                    "surface-dim": "#0c1322",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "secondary": "#5de6ff",
+                    "inverse-primary": "#0053db",
+                    "surface-container": "#191f2f",
+                    "secondary-container": "#00cbe6",
+                    "inverse-surface": "#dce2f7",
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary": "#472a00",
+                    "on-tertiary-container": "#ffeedd",
+                    "on-error-container": "#ffdad6",
+                    "on-primary": "#002a78",
+                    "on-background": "#dce2f7",
+                    "primary-container": "#2563eb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "16px",
+                    "container-padding": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-edge": "32px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "data-point": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "data-point": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0c1322;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-panel {
+            background: #191f2f;
+            border: 1px solid #434655;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .hud-border {
+            position: relative;
+        }
+
+        .hud-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid #5de6ff;
+            border-left: 2px solid #5de6ff;
+        }
+
+        .hud-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid #5de6ff;
+            border-right: 2px solid #5de6ff;
+        }
+
+        .data-mesh {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(93, 230, 255, 0.5), transparent);
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.2;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen text-on-surface">
+<!-- Background Layer -->
+<div class="fixed inset-0 z-0">
+<div class="absolute inset-0 data-mesh pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background/0 via-background/10 to-background"></div>
+</div>
+<!-- Main Login Container -->
+<main class="relative z-10 w-full flex flex-col items-center max-w-[440px] px-6">
+<!-- Brand Header -->
+<header class="flex flex-col items-center w-full mb-10 gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">public</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">ClimateTwin India</h1>
+</div>
+<p class="font-label-md text-label-md text-secondary uppercase tracking-widest text-xs">AI-Powered Digital Twin</p>
+</header>
+<!-- Login Card -->
+<div class="glass-panel w-full rounded-xl p-6 hud-border relative overflow-hidden">
+<div class="scanline"></div>
+<div class="mb-6 pb-4">
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface mb-2">Terminal Login</h2>
+<div class="flex items-center gap-2 text-error text-[10px] font-label-md uppercase tracking-tighter">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="">Authorized Personnel Only</span>
+</div>
+</div>
+<form class="space-y-6" onsubmit="return false">
+<!-- Mission ID -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-outline-variant uppercase text-xs">Mission ID</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">alternate_email</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-3 pl-10 pr-4 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline/50" placeholder="official@climate-twin.gov.in" type="email"/>
+</div>
+</div>
+<!-- Security Key -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-outline-variant uppercase text-xs">Security Key</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-3 pl-10 pr-4 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline/50" placeholder="••••••••••••" type="password"/>
+</div>
+</div>
+<!-- Biometric Toggle -->
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">fingerprint</span>
+<span class="font-label-md text-label-md text-sm">Hardware Key / Biometric</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="biometric-toggle" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Login Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-on-primary font-headline-md text-[18px] py-4 rounded-lg flex items-center justify-center gap-2 group transition-all active:scale-[0.98] shadow-lg shadow-primary/20">
+<span class="">Initialize Session</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">login</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 flex flex-col items-center gap-2">
+<a class="font-label-md text-label-md text-outline hover:text-secondary transition-colors uppercase tracking-widest text-[11px]" href="#">Emergency Access Protocol</a>
+<div class="h-1 w-8 bg-outline-variant rounded-full mt-2"></div>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="mt-8 flex items-center justify-center gap-6 opacity-60">
+<div class="flex flex-col items-end">
+<p class="font-label-md text-[10px] text-outline-variant uppercase">Encryption</p>
+<p class="font-label-md text-xs text-on-surface">AES-256 GCM</p>
+</div>
+<div class="w-[1px] h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-start">
+<p class="font-label-md text-[10px] text-outline-variant uppercase">Server Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#5de6ff] animate-pulse"></span>
+<p class="font-label-md text-xs text-on-surface">Connected</p>
+</div>
+</div>
+</div>
+</main>
+<!-- UI Interaction Scripts -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input');
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            function playTick() {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.1);
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    playTick();
+                });
+            });
+        });
+    </script>
+</body></html>

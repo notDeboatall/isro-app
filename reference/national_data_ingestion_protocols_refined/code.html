@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClimateTwin India | National Data Ingestion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-tertiary": "#472a00",
+                    "on-primary-container": "#eeefff",
+                    "inverse-surface": "#dce2f7",
+                    "surface-container-lowest": "#070e1d",
+                    "on-surface": "#dce2f7",
+                    "on-surface-variant": "#c3c6d7",
+                    "secondary-fixed-dim": "#2fd9f4",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-container": "#00515d",
+                    "primary": "#b4c5ff",
+                    "outline": "#8d90a0",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-low": "#141b2b",
+                    "surface-bright": "#323949",
+                    "on-tertiary-container": "#ffeedd",
+                    "surface-dim": "#0c1322",
+                    "on-secondary": "#00363e",
+                    "primary-container": "#2563eb",
+                    "on-error": "#690005",
+                    "secondary-container": "#00cbe6",
+                    "secondary-fixed": "#a2eeff",
+                    "secondary": "#5de6ff",
+                    "on-primary": "#002a78",
+                    "surface": "#0c1322",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#b4c5ff",
+                    "outline-variant": "#434655",
+                    "tertiary": "#ffb95f",
+                    "surface-container": "#191f2f",
+                    "inverse-on-surface": "#293040",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container-highest": "#2e3545",
+                    "on-secondary-fixed": "#001f25",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#2e3545",
+                    "tertiary-fixed": "#ffddb8",
+                    "background": "#0c1322",
+                    "surface-container-high": "#232a3a",
+                    "on-background": "#dce2f7",
+                    "tertiary-container": "#996100",
+                    "error-container": "#93000a",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "inverse-primary": "#0053db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "margin-edge": "32px",
+                    "container-padding": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "data-point": ["Space Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "data-point": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(23, 32, 51, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.05);
+        }
+        .hud-line {
+            background: linear-gradient(90deg, transparent, rgba(93, 230, 255, 0.2), transparent);
+            height: 1px;
+            width: 100%;
+        }
+        .status-pulse {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .pipeline-flow {
+            background-image: radial-gradient(rgba(93, 230, 255, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen selection:bg-secondary selection:text-on-secondary">
+<!-- Top Navigation -->
+<nav class="flex justify-between items-center w-full px-6 h-16 sticky top-0 z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-bold text-primary tracking-tighter">ClimateTwin India | Mission Control</span>
+</div>
+<div class="hidden md:flex items-center gap-6"><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Dashboard</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Climate Map</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Predictions</a><a class="font-body-md text-body-md text-secondary border-b-2 border-secondary pb-1" href="#">Data Protocols</a></div>
+<div class="flex items-center gap-4"><div class="relative hidden lg:flex mr-4 items-center"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span><input class="bg-surface-container-highest border-none rounded-full py-1.5 pl-10 pr-4 text-xs w-64 focus:ring-1 focus:ring-secondary text-on-surface placeholder:text-on-surface-variant/50" placeholder="Search system..." type="text"/></div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-secondary" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-secondary" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full border border-secondary/30 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a Chief Climate Analyst with sharp features, wearing minimalist technical apparel, in a high-tech control room environment with soft blue ambient lighting and blurred data displays in the background, cinematic digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxmnunvD8oGG_GHUh1XZqMKjJ70mHd6CdZUcuNKZjKyb-lmAiVwfBmoBfI709r50WikMErZPNnXP1xMXLw1wYjiQrJorZSo2-ca4z-RwirhrT0HVCGA9KDbakY0K2ozRFLArlJsaa5BYciWwQYGqVaupVVuvrf6UOVgNfYcpvA-2teWVMGNSUCBlLx-tPiTls8PnzEQDodsZayoIdioHB8kNo60WX8Pu9MfzDD3eNaw4AaxSEkxpk9IdkPZjKo8d3NOroqFktUPWph"/>
+</div>
+</div>
+</nav>
+<div class="flex">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-64px)] w-64 sticky top-16 bg-surface-container-low/50 backdrop-blur-md border-r border-white/5 py-6">
+<div class="px-6 mb-8 flex items-center h-8">
+<h2 class="font-label-md text-label-md font-semibold uppercase tracking-widest text-on-surface-variant opacity-50">System Hub</h2>
+</div>
+<nav class="flex-1 px-4 space-y-2"><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="map">map</span><span class="font-label-md text-label-md">Climate Map</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="online_prediction">online_prediction</span><span class="font-label-md text-label-md">Predictions</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="model_training">model_training</span><span class="font-label-md text-label-md">Scenario Simulator</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="analytics">analytics</span><span class="font-label-md text-label-md">Analytics</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="assessment">assessment</span><span class="font-label-md text-label-md">Reports</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="vulnerability">vulnerability</span><span class="font-label-md text-label-md">Vulnerability Index</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined" data-icon="api">api</span><span class="font-label-md text-label-md">API Portal</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary/10 text-secondary border-r-4 border-secondary transition-all" href="#"><span class="material-symbols-outlined" data-icon="database">database</span><span class="font-label-md text-label-md">Data Protocols</span></a></nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Export Data Report
+                </button>
+<div class="pt-4 border-t border-white/5 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-secondary text-sm" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+                        Support
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-secondary text-sm" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+                        Documentation
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-6 max-w-[1600px] mx-auto">
+<header class="mb-6 flex justify-between items-center h-20">
+<div>
+<h1 class="font-display-lg font-bold text-display-lg text-on-surface">Data Ingestion Engine</h1>
+<p class="font-label-md text-label-md text-secondary uppercase tracking-[0.2em] mt-2">National Protocol Management // Protocol v4.2.1-IND</p>
+</div>
+<div class="flex gap-4 items-center">
+<div class="glass-card px-4 py-2 rounded-lg border-secondary/20 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary status-pulse"></div>
+<span class="font-label-md text-xs text-secondary font-semibold">SYSTEM OPERATIONAL</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Pipeline ETL Flow Visualization -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-6 relative overflow-hidden h-[500px]">
+<div class="flex justify-between items-center mb-6 h-10">
+<div>
+<h3 class="font-headline-md font-semibold text-headline-md text-on-surface">Live Data Pipeline</h3>
+<p class="text-on-surface-variant text-sm">Cross-Agency ETL Flow</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-[10px] font-label-md text-on-surface uppercase">Real-time Stream</span>
+</div>
+</div>
+<div class="absolute inset-0 pipeline-flow opacity-30 mt-20"></div>
+<!-- Nodes Container -->
+<div class="relative h-full flex items-center justify-between px-10 pb-20">
+<!-- Source Nodes -->
+<div class="flex flex-col gap-10 justify-center">
+<div class="glass-card p-4 rounded-lg border-white/10 w-40 text-center relative z-10">
+<span class="font-label-md text-[10px] text-secondary">IMD-RADAR</span>
+<div class="text-on-surface font-headline-md font-semibold">1.2 GB/s</div>
+<div class="w-full bg-secondary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[85%]"></div>
+</div>
+</div>
+<div class="glass-card p-4 rounded-lg border-white/10 w-40 text-center relative z-10">
+<span class="font-label-md text-[10px] text-secondary">INSAT-3D</span>
+<div class="text-on-surface font-headline-md font-semibold">450 MB/s</div>
+<div class="w-full bg-secondary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[92%]"></div>
+</div>
+</div>
+<div class="glass-card p-4 rounded-lg border-white/10 w-40 text-center relative z-10">
+<span class="font-label-md text-[10px] text-secondary">MOSDAC</span>
+<div class="text-on-surface font-headline-md font-semibold">2.1 GB/s</div>
+<div class="w-full bg-secondary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[40%]"></div>
+</div>
+</div>
+</div>
+<!-- Processing Node (Center) -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-32 h-32 rounded-full glass-card flex items-center justify-center border-secondary shadow-[0_0_40px_rgba(93,230,255,0.15)]">
+<span class="material-symbols-outlined text-secondary text-4xl" data-icon="neurology">neurology</span>
+</div>
+<span class="mt-4 font-label-md text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Protocol Engine</span>
+</div>
+<!-- Destination Nodes -->
+<div class="flex flex-col gap-10">
+<div class="glass-card p-4 rounded-lg border-white/10 w-40 text-center relative z-10">
+<span class="font-label-md text-[10px] text-primary">BHUVAN-GIS</span>
+<div class="text-on-surface font-headline-md font-semibold">SYNCING</div>
+<div class="w-full bg-primary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%] animate-pulse"></div>
+</div>
+</div>
+<div class="glass-card p-4 rounded-lg border-white/10 w-40 text-center relative z-10">
+<span class="font-label-md text-[10px] text-primary">C-TWIN CORE</span>
+<div class="text-on-surface font-headline-md font-semibold">ACTIVE</div>
+<div class="w-full bg-primary/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Fidelity & Metrics -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="glass-card flex-1 rounded-xl p-6 border-l-4 border-l-secondary">
+<div class="flex justify-between items-center mb-4 h-8">
+<h4 class="font-label-md font-semibold text-label-md text-on-surface-variant uppercase tracking-tighter">Overall Data Fidelity</h4>
+<span class="material-symbols-outlined text-secondary" data-icon="verified">verified</span>
+</div>
+<div class="text-5xl font-display-lg font-bold text-on-surface">99.91<span class="text-2xl text-secondary">%</span></div>
+<div class="mt-4 flex gap-4">
+<span class="text-xs text-on-surface-variant font-label-md">LATENCY: <span class="text-on-surface font-semibold">42ms</span></span>
+<span class="text-xs text-on-surface-variant font-label-md">JITTER: <span class="text-on-surface font-semibold">1.2ms</span></span>
+</div>
+</div>
+<div class="glass-card flex-1 rounded-xl p-6">
+<div class="flex items-center h-8 mb-4">
+<h4 class="font-label-md font-semibold text-label-md text-on-surface-variant uppercase">Ingestion Frequency</h4>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-label-md">Satellite High-Res</span>
+<span class="text-sm text-secondary font-label-md">15m</span>
+</div>
+<input class="w-full accent-secondary h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" type="range"/>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-label-md">Ground Stations</span>
+<span class="text-sm text-secondary font-label-md">1s</span>
+</div>
+<input class="w-full accent-secondary h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" type="range"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Tables Section -->
+<div class="col-span-12 lg:col-span-7 glass-card rounded-xl overflow-hidden">
+<div class="p-6 border-b border-white/5 flex justify-between items-center h-20">
+<h3 class="font-headline-md font-semibold text-headline-md">Ingestion Logs &amp; Metadata</h3>
+<div class="flex items-center gap-2">
+<button class="bg-surface-container-highest p-2 rounded hover:bg-white/10 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+</button>
+<button class="bg-surface-container-highest p-2 rounded hover:bg-white/10 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto p-6 pt-0">
+<table class="w-full text-left font-label-md table-fixed">
+<thead class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-wider">
+<tr>
+<th class="px-6 py-4">Protocol ID</th>
+<th class="px-6 py-4">Source Agency</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Error Rate</th>
+<th class="px-6 py-4">Last Sync</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 text-sm">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 text-secondary truncate">#INSAT-3DR-V2</td>
+<td class="px-6 py-4 truncate">ISRO / MOSDAC</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                            NOMINAL
+                                        </span>
+</td>
+<td class="px-6 py-4">0.002%</td>
+<td class="px-6 py-4 opacity-70">2m ago</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 text-secondary truncate">#AWS-NETWORK-IND</td>
+<td class="px-6 py-4 truncate">IMD GROUND</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                            NOMINAL
+                                        </span>
+</td>
+<td class="px-6 py-4">0.000%</td>
+<td class="px-6 py-4 opacity-70">Now</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 text-secondary truncate">#BHUVAN-LULC</td>
+<td class="px-6 py-4 truncate">NRSC / ISRO</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                            DEGRADED
+                                        </span>
+</td>
+<td class="px-6 py-4 text-tertiary">4.210%</td>
+<td class="px-6 py-4 opacity-70">14m ago</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 text-secondary truncate">#OCEANSAT-3</td>
+<td class="px-6 py-4 truncate">ISRO</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                            NOMINAL
+                                        </span>
+</td>
+<td class="px-6 py-4">0.001%</td>
+<td class="px-6 py-4 opacity-70">1h ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Side Panels -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-6">
+<!-- Satellite Orbital Passes -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-6 h-10">
+<h3 class="font-headline-md font-semibold text-headline-md">Orbital Overpass</h3>
+<span class="font-label-md text-xs text-secondary font-semibold">LIVE TRACKING</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10 min-h-[72px]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="satellite_alt">satellite_alt</span>
+</div>
+<div>
+<div class="font-label-md text-sm font-semibold truncate">CartoSat-3</div>
+<div class="text-[10px] text-on-surface-variant truncate">Polar Sun-Synch</div>
+</div>
+</div>
+<div class="text-right shrink-0 ml-4">
+<div class="text-secondary font-label-md text-xs font-semibold">ETA: 04:12m</div>
+<div class="text-[10px] text-on-surface-variant">Az: 214° | El: 42°</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10 min-h-[72px]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="satellite_alt">satellite_alt</span>
+</div>
+<div>
+<div class="font-label-md text-sm font-semibold truncate">RISAT-2B</div>
+<div class="text-[10px] text-on-surface-variant truncate">Radar Imaging</div>
+</div>
+</div>
+<div class="text-right shrink-0 ml-4">
+<div class="text-on-surface-variant font-label-md text-xs font-semibold">PASSED</div>
+<div class="text-[10px] text-on-surface-variant">Data Dump: 14.2 GB</div>
+</div>
+</div>
+</div>
+</div>
+<!-- API Key Management -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-6 h-10">
+<h3 class="font-headline-md font-semibold text-headline-md">Partner Auth Nodes</h3>
+<button class="text-xs font-label-md text-secondary border border-secondary/30 px-3 py-1.5 rounded-full hover:bg-secondary/10 transition-colors font-semibold">+ NEW KEY</button>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-white/5 pb-4">
+<div class="min-w-0 pr-4">
+<div class="text-sm font-label-md font-semibold truncate">IISc Bangalore</div>
+<div class="text-[10px] font-mono text-on-surface-variant opacity-50 uppercase truncate">•••• •••• •••• 9214</div>
+</div>
+<span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded font-semibold shrink-0">RESEARCH</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/5 pb-4">
+<div class="min-w-0 pr-4">
+<div class="text-sm font-label-md font-semibold truncate">IIT Bombay - Climate Hub</div>
+<div class="text-[10px] font-mono text-on-surface-variant opacity-50 uppercase truncate">•••• •••• •••• 4402</div>
+</div>
+<span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded font-semibold shrink-0">RESEARCH</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="min-w-0 pr-4">
+<div class="text-sm font-label-md font-semibold truncate">NDMA Response Unit</div>
+<div class="text-[10px] font-mono text-on-surface-variant opacity-50 uppercase truncate">•••• •••• •••• 1109</div>
+</div>
+<span class="bg-error/20 text-error text-[10px] px-2 py-0.5 rounded font-semibold shrink-0">CRITICAL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-6 flex flex-wrap gap-4 items-center justify-between text-xs font-label-md text-on-surface-variant h-10">
+<div class="flex items-center gap-6">
+<span class="font-semibold">SECURITY: <span class="text-secondary">AES-512 ENCRYPTED</span></span>
+<span class="font-semibold">SERVER: <span class="text-on-surface">DEL-04-NORTH</span></span>
+<span class="font-semibold">UPTIME: <span class="text-on-surface">99.999%</span></span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-semibold">TERMINAL CONNECTED: ROOT@C-TWIN-IND</span>
+</div>
+</footer>
+</main>
+</div>
+<script>
+        // Simple interactive pulse for nodes on click
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simulating live data update every 5 seconds
+        setInterval(() => {
+            const fidelity = (99.9 + Math.random() * 0.1).toFixed(2);
+            const display = document.querySelector('.text-5xl.font-display-lg');
+            if (display) {
+                display.innerHTML = `${fidelity}<span class="text-2xl text-secondary">%</span>`;
+            }
+        }, 5000);
+    </script>
+</body></html>

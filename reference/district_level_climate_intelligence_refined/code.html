@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClimateTwin India | District Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Use the theme configuration provided -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-tertiary": "#472a00",
+                    "on-primary-container": "#eeefff",
+                    "inverse-surface": "#dce2f7",
+                    "surface-container-lowest": "#070e1d",
+                    "on-surface": "#dce2f7",
+                    "on-surface-variant": "#c3c6d7",
+                    "secondary-fixed-dim": "#2fd9f4",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-container": "#00515d",
+                    "primary": "#b4c5ff",
+                    "outline": "#8d90a0",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-low": "#141b2b",
+                    "surface-bright": "#323949",
+                    "on-tertiary-container": "#ffeedd",
+                    "surface-dim": "#0c1322",
+                    "on-secondary": "#00363e",
+                    "primary-container": "#2563eb",
+                    "on-error": "#690005",
+                    "secondary-container": "#00cbe6",
+                    "secondary-fixed": "#a2eeff",
+                    "secondary": "#5de6ff",
+                    "on-primary": "#002a78",
+                    "surface": "#0c1322",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#b4c5ff",
+                    "outline-variant": "#434655",
+                    "tertiary": "#ffb95f",
+                    "surface-container": "#191f2f",
+                    "inverse-on-surface": "#293040",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container-highest": "#2e3545",
+                    "on-secondary-fixed": "#001f25",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#2e3545",
+                    "tertiary-fixed": "#ffddb8",
+                    "background": "#0c1322",
+                    "surface-container-high": "#232a3a",
+                    "on-background": "#dce2f7",
+                    "tertiary-container": "#996100",
+                    "error-container": "#93000a",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "inverse-primary": "#0053db"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "margin-edge": "32px",
+                    "container-padding": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "data-point": ["Space Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "data-point": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(23, 32, 51, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(93, 230, 255, 0.3);
+        }
+        .hud-line {
+            background: linear-gradient(90deg, transparent, #5de6ff, transparent);
+            height: 1px;
+            width: 100%;
+        }
+        .scrolling-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrolling-container::-webkit-scrollbar-thumb {
+            background: #2e3545;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 0 0 rgba(93, 230, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(93, 230, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(93, 230, 255, 0); }
+        }
+        .glow-dot {
+            animation: pulse-cyan 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-secondary/30">
+<!-- TopNavBar (Shared Component JSON Mapping) -->
+<header class="flex justify-between items-center w-full px-margin-edge h-16 sticky top-0 z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-headline-md font-bold text-primary tracking-tighter">ClimateTwin India</span>
+<div class="hidden md:flex gap-6 ml-10 items-center"><a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 cursor-pointer" href="#">Dashboard</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Climate Map</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Predictions</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Scenario Simulator</a></div>
+</div>
+<div class="flex items-center gap-stack-md"><div class="relative hidden lg:block"><input class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-1.5 text-body-md focus:border-primary focus:ring-0 w-64" placeholder="Search districts..." type="text"/><span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span></div><span class="material-symbols-outlined text-primary cursor-pointer active:opacity-80">notifications</span><span class="material-symbols-outlined text-primary cursor-pointer active:opacity-80">settings</span><img class="w-8 h-8 rounded-full border border-primary/30 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr2J9cz9-VOxkhTsZaxR2pn8XAo_H7yjEJMze5weB-1FC88hCbITDIt_TJWpG-jSnUFU3BcLdVxdIHeI-4ecB7kGSXpSbhEOm2q5y_A1BYANSOBzetk_GMibeUJzw8w02j86hBgXWjJdHQ_C440IEeh_-5ciT7x-B69N4q79kSJQ2HLg0Rc090C01ItTTz92W2m-egwlBuddELn-BUOnKmTcAkscB6c0Ld8iYicZBMyd5I3nNf_Xxlubk_8vLEqwt5qlu7gSDtmQBa"/></div>
+</header>
+<div class="flex">
+<!-- SideNavBar (Shared Component JSON Mapping) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-64px)] w-64 fixed left-0 top-16 py-stack-lg bg-surface-container-low/50 dark:bg-surface-container-low/50 backdrop-blur-md border-r border-white/5 shadow-2xl z-40">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-secondary/20 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">analytics</span>
+</div>
+<div>
+<h3 class="font-display-lg text-on-surface text-sm uppercase tracking-widest font-semibold">Mission Control</h3>
+<p class="text-[10px] text-on-surface-variant font-label-md">Precision Monitoring</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1"><div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary/10 text-secondary border-r-4 border-secondary transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></div><div class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">map</span><span class="font-label-md text-label-md">Climate Map</span></div><div class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">online_prediction</span><span class="font-label-md text-label-md">Predictions</span></div><div class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">model_training</span><span class="font-label-md text-label-md">Scenario Simulator</span></div><div class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">analytics</span><span class="font-label-md text-label-md">Analytics</span></div><div class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">assessment</span><span class="font-label-md text-label-md">Reports</span></div><div class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all duration-300 cursor-pointer"><span class="material-symbols-outlined">vulnerable</span><span class="font-label-md text-label-md">Vulnerability Index</span></div></nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md py-2.5 rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container/90 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export Data Report
+                </button>
+<div class="space-y-1"><div class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-secondary transition-colors cursor-pointer"><span class="material-symbols-outlined text-sm">api</span><span class="text-xs font-label-md">API Portal</span></div><div class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-secondary transition-colors cursor-pointer"><span class="material-symbols-outlined text-sm">database</span><span class="text-xs font-label-md">Data Protocols</span></div><div class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-secondary transition-colors cursor-pointer"><span class="material-symbols-outlined text-sm">help</span><span class="text-xs font-label-md">Support</span></div></div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-margin-edge">
+<!-- Breadcrumbs & Title -->
+<div class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-xs mb-2">
+<span class="">India</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="">Maharashtra</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-secondary">Ratnagiri District</span>
+</div>
+<h1 class="font-display-lg text-headline-lg text-on-surface font-bold">Ratnagiri Intelligence View</h1>
+<p class="text-on-surface-variant max-w-2xl mt-2 font-body-md">Hyper-local climate monitoring at 30m resolution. Integrating real-time precipitation, soil saturation, and predictive flood modeling.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="glass-card px-4 py-2 rounded-lg flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary glow-dot"></div>
+<span class="font-label-md text-xs font-semibold">LIVE FEED: SAT-V2</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- District Interactive Map -->
+<div class="md:col-span-8 glass-card rounded-xl overflow-hidden flex flex-col min-h-[500px]">
+<div class="p-6 flex justify-between items-center border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">map</span>
+<span class="font-headline-md text-sm uppercase tracking-widest font-semibold">30m Resolution Heatmap</span>
+</div>
+<div class="flex gap-2 items-center">
+<button class="bg-secondary/10 text-secondary text-[10px] px-3 py-1 rounded font-label-md border border-secondary/20">FLOOD RISK</button>
+<button class="bg-white/5 text-on-surface-variant text-[10px] px-3 py-1 rounded font-label-md hover:bg-white/10">SOIL MOISTURE</button>
+<button class="bg-white/5 text-on-surface-variant text-[10px] px-3 py-1 rounded font-label-md hover:bg-white/10">THERMAL</button>
+</div>
+</div>
+<div class="flex-1 relative group overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-location="Ratnagiri, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCydSucuN-XtJodZsqqB6OY2IS3qyxNaRd933dxxsBH4H8ImDRxHz9YUbEoVEsvdlPb0e9pP1sFBOF76UB7smEWIcjwapyGSWdiCtIhcKnrJGK4BVNY2_ei-bb_aShYmR8QdZHjcwR6kuZcwpK8EmUj_aULkXFtlY4BhBoR4DVyIg1D91D-1lU35kPa0XSS-1Fm2lIgcRC-u2m6TA9xo_IsNIY9rCYeR_3-AwJN_8bNqWD9zjURte_ltF3PK3M83ykBDG-Zr7CQu-U1')"></div>
+<!-- HUD Overlays -->
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<div class="glass-card p-3 rounded-lg text-xs font-label-md backdrop-blur-xl">
+<p class="text-on-surface-variant mb-1">LAT: 16.9902° N</p>
+<p class="text-on-surface-variant">LONG: 73.3120° E</p>
+</div>
+<div class="glass-card px-3 py-1.5 rounded-lg text-[10px] font-label-md backdrop-blur-xl border border-white/5"><span class="text-on-surface-variant">SOURCE: </span><span class="text-secondary">ISRO-Bhuvan</span></div></div>
+<div class="absolute bottom-4 right-4 glass-card p-4 rounded-xl max-w-[200px]">
+<h4 class="font-label-md text-[10px] text-secondary mb-2 uppercase font-semibold">Risk Key</h4>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-on-surface-variant">Critical (80-100)</span>
+<div class="w-12 h-1.5 bg-error rounded-full"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-on-surface-variant">Elevated (50-79)</span>
+<div class="w-12 h-1.5 bg-tertiary rounded-full"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-on-surface-variant">Low (0-49)</span>
+<div class="w-12 h-1.5 bg-secondary rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Hover Interaction Placeholder -->
+<div class="absolute inset-0 bg-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+<div class="glass-card p-4 rounded-lg flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary animate-bounce">near_me</span>
+<span class="text-xs font-label-md mt-2">Click to inspect grid node</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Climate Metrics Column -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<!-- Resilience Score -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden min-h-[240px]">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary/10 blur-[50px] rounded-full"></div>
+<h4 class="font-headline-md text-sm text-on-surface-variant mb-4 font-semibold uppercase tracking-widest">Climate Resilience Score</h4>
+<div class="relative w-32 h-32 flex items-center justify-center mb-4">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-white/5" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="100" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-4xl text-on-surface">72</span>
+<span class="text-[10px] font-label-md text-secondary uppercase font-semibold">Stable</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-body-md italic">"Score improved by 4% due to recent sea-wall fortification data."</p>
+</div>
+<!-- Soil Moisture / Agri Data -->
+<div class="glass-card p-6 rounded-xl flex-1 flex-col">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-tertiary">agriculture</span>
+<span class="font-headline-md text-sm uppercase tracking-widest font-semibold">Agricultural Health</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-label-md text-on-surface-variant">Soil Moisture (Surface)</span>
+<span class="text-xs font-data-point text-on-surface">64%</span>
+</div>
+<div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[64%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-label-md text-on-surface-variant">Groundwater Level</span>
+<span class="text-xs font-data-point text-on-surface">-1.2m</span>
+</div>
+<div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[80%]"></div>
+</div>
+</div>
+<div class="pt-4 border-t border-white/5">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">info</span>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">Early warning: Alphonso mango yield predicted to decline by 12% if pre-monsoon heat persists.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Historical Trends -->
+<div class="md:col-span-12 lg:col-span-6 glass-card p-6 rounded-xl">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">show_chart</span>
+<span class="font-headline-md text-sm uppercase tracking-widest font-semibold">Temperature Anomalies</span>
+</div>
+<select class="bg-surface-container-high border-none text-[10px] font-label-md rounded px-2 py-1 focus:ring-secondary/50">
+<option>LAST 30 YEARS</option>
+<option>LAST 10 YEARS</option>
+</select>
+</div>
+<div class="h-48 w-full relative flex items-end justify-between gap-1">
+<!-- Chart Mockup -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-white/5 w-full h-0"></div>
+</div></div></div></div></main></div>
+</body></html>
