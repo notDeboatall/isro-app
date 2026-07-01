@@ -245,7 +245,7 @@ export default function Dashboard() {
                 <BellRing size={16} className="text-warning" />
                 Live Intelligence Feed
               </CardTitle>
-              <Button variant="ghost" size="sm" className="h-auto py-1 text-xs">View All</Button>
+              <Button onClick={() => alert('Loading full historical intelligence log...')} variant="ghost" size="sm" className="h-auto py-1 text-xs">View All</Button>
             </CardHeader>
             <CardContent className="p-4 flex flex-col gap-3 flex-1 overflow-y-auto max-h-[320px] custom-scrollbar">
               {alerts.map((alert) => (

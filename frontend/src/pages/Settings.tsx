@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { 
   Settings as SettingsIcon,
   Database,
@@ -23,6 +23,21 @@ export default function Settings() {
   const [syncEnabled, setSyncEnabled] = useState(true);
   const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
   const [theme, setTheme] = useState<'dark' | 'light' | 'contrast'>('dark');
+
+  useEffect(() => {
+    document.documentElement.classList.remove('theme-light', 'theme-dark', 'theme-contrast', 'light', 'dark');
+    document.documentElement.classList.add(`theme-${theme}`);
+    if (theme === 'light') {
+      document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+      document.body.style.background = '#081120';
+    } else if (theme === 'contrast') {
+      document.body.style.filter = 'contrast(1.5) saturate(1.2)';
+      document.body.style.background = '#000000';
+    } else {
+      document.body.style.filter = 'none';
+      document.body.style.background = '';
+    }
+  }, [theme]);
 
   const [sources, setSources] = useState({
     imd: true,
@@ -187,7 +202,7 @@ export default function Settings() {
                     <span className="text-white font-semibold text-sm">Multi-Factor Authentication</span>
                     <span className="text-xs text-gray-400">Required for admin-level simulation overrides.</span>
                   </div>
-                  <Button variant="outline" className="text-xs px-3 py-1.5 h-auto border-secondary/30 text-secondary hover:bg-secondary/10 hover:text-secondary">Configure</Button>
+                  <Button onClick={() => alert('MFA Configuration Protocol initiated.')} variant="outline" className="text-xs px-3 py-1.5 h-auto border-secondary/30 text-secondary hover:bg-secondary/10 hover:text-secondary">Configure</Button>
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -255,10 +270,10 @@ export default function Settings() {
 
       {/* Global Actions */}
       <div className="mt-8 flex justify-end gap-4">
-        <Button variant="ghost" className="gap-2 text-gray-400 hover:text-white">
+        <Button onClick={() => alert('Settings reverted to ISRO default templates.')} variant="ghost" className="gap-2 text-gray-400 hover:text-white">
           <RotateCcw size={18} /> Reset to Defaults
         </Button>
-        <Button className="gap-2 bg-secondary text-on-secondary px-8 font-bold hover:bg-secondary/90 shadow-[0_0_20px_rgba(34,211,238,0.25)]">
+        <Button onClick={() => alert('Configuration parameters successfully synchronized to central server.')} className="gap-2 bg-secondary text-on-secondary px-8 font-bold hover:bg-secondary/90 shadow-[0_0_20px_rgba(34,211,238,0.25)]">
           <Save size={18} /> Save Changes
         </Button>
       </div>

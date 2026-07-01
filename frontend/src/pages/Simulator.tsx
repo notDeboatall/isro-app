@@ -259,11 +259,11 @@ export default function Simulator() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-4">
-                <Button variant="outline" className="text-secondary border-secondary/30 hover:bg-secondary/10 hover:text-secondary gap-2">
+                <Button onClick={() => alert("Saving simulation parameters to profile...")} variant="outline" className="text-secondary border-secondary/30 hover:bg-secondary/10 hover:text-secondary gap-2">
                   <Download size={18} />
                   Export Forecast PDF
                 </Button>
-                <Button variant="outline" className="gap-2">
+                <Button onClick={() => alert("Exporting simulation report (.pdf)...")} variant="outline" className="gap-2">
                   <Share2 size={18} />
                   Share with Stakeholders
                 </Button>

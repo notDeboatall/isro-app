@@ -47,10 +47,10 @@ export default function Analytics() {
           <p className="text-gray-400 text-sm max-w-2xl mt-2 leading-relaxed">Historical climate modeling and high-fidelity intelligence report generation for cross-state policy planning.</p>
         </div>
         <div className="flex gap-4">
-          <Button variant="outline" className="gap-2">
+          <Button onClick={() => alert("Initiating analytical data export...")} variant="outline" className="gap-2">
             <Filter size={18} /> Filter View
           </Button>
-          <Button className="gap-2 bg-secondary text-on-secondary hover:bg-secondary/90 shadow-[0_0_15px_rgba(93,230,255,0.3)]">
+          <Button onClick={() => alert("Generating executive slide deck...")} className="gap-2 bg-secondary text-on-secondary hover:bg-secondary/90 shadow-[0_0_15px_rgba(93,230,255,0.3)]">
             <BarChart4 size={18} /> Generate Custom Report
           </Button>
         </div>

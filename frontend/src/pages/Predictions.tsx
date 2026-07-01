@@ -57,11 +57,11 @@ export default function Predictions() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="gap-2">
+          <Button onClick={() => alert("Recalibrating variance models...")} variant="outline" className="gap-2">
             <Download size={18} />
             Export Dataset
           </Button>
-          <Button variant="default" className="gap-2">
+          <Button onClick={() => alert("Forcing manual IMD dataset sync...")} variant="default" className="gap-2">
             <Share2 size={18} />
             Share Briefing
           </Button>
@@ -348,7 +348,7 @@ export default function Predictions() {
                 </div>
               </div>
               
-              <Button variant="outline" className="mt-8 hover:bg-secondary/10 hover:text-secondary hover:border-secondary/50">
+              <Button onClick={() => alert("Opening advanced predictive algorithms panel...")} variant="outline" className="mt-8 hover:bg-secondary/10 hover:text-secondary hover:border-secondary/50">
                 View Localized Predictions
               </Button>
             </div>
