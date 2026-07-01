@@ -1,5 +1,5 @@
 import { 
-  DeviceThermostat, 
+  Thermometer, 
   Droplets, 
   Wind, 
   Sun, 
@@ -71,7 +71,7 @@ export default function Dashboard() {
           <CardContent className="p-5 flex flex-col gap-2">
             <div className="flex justify-between items-center text-gray-400 group-hover:text-gray-300 transition-colors">
               <span className="text-[10px] font-medium uppercase tracking-wider">Temperature</span>
-              <DeviceThermostat className="text-accent" size={18} />
+              <Thermometer className="text-accent" size={18} />
             </div>
             <div className="flex items-baseline gap-1 mt-1">
               <span className="text-3xl font-bold tracking-tighter">{kpis.temperature}</span>
